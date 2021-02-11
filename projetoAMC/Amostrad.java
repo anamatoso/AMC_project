@@ -1,3 +1,5 @@
+//Amostra package
+
 package projetoAMC;
 
 
@@ -19,7 +21,7 @@ class paciente implements Serializable {
 	int [] parametros; 	//medicoes
 	paciente next;		//proximo paciente
 
-	public paciente(int[] parametros) { //iniciaçao do paciente com os parametros dele e sem next
+	public paciente(int[] parametros) { //iniciaÃ§ao do paciente com os parametros dele e sem next
 		super();
 		this.parametros = parametros;
 		this.next = null;
@@ -38,12 +40,12 @@ public class Amostrad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	int length;			//numero de pacientes
-	int npar;			//numero de parametros/mediçoes
+	int npar;			//numero de parametros/mediÃ§oes
 	paciente first;		//primeiro paciente da amostra
 	paciente last;		//ultimo paciente da amostra
 	ArrayList<Integer> dominio;
 
-	public Amostrad() {	//iniciaçao da amostra começa com ela vazia
+	public Amostrad() {	//iniciaÃ§ao da amostra comeÃ§a com ela vazia
 		this.length = 0;
 		this.npar = 0;
 		this.first = null;
@@ -74,7 +76,7 @@ public class Amostrad implements Serializable {
 				add(first); //adiciono o a amostra
 
 				while ( (line = br.readLine()) != null ) { // Enquanto ha linhas menos a ultima
-					String[] parametros = line.split(csvSplit); // Dividir linha por , comprimento=numero de mediçoes
+					String[] parametros = line.split(csvSplit); // Dividir linha por , comprimento=numero de mediÃ§oes
 					int p[]=new int [npar];
 					for (int i = 0; i < p.length; i++) {p[i]=Integer.parseInt(parametros[i]);}
 					add(new paciente(p)); //adiciono o novo paciente com os parametros da linha
@@ -100,16 +102,16 @@ public class Amostrad implements Serializable {
 
 	public void add(paciente novopac) throws Exception{	//adiciona paciente
 		if (emptyQ()) { //se estiver vazia
-			first=novopac;						//o primeiro paciente é o novo
-			last=novopac;						//o ultimo paciente é o novo
-			npar=novopac.parametros.length;		//numero de mediçoes passa a ser o do paciente novo
+			first=novopac;						//o primeiro paciente Ã© o novo
+			last=novopac;						//o ultimo paciente Ã© o novo
+			npar=novopac.parametros.length;		//numero de mediÃ§oes passa a ser o do paciente novo
 			length++;							//aumento comprimento da amostra em 1 paciente
 			dominio = new ArrayList<Integer>(npar);
 			for (int par : novopac.parametros) {dominio.add(par+1);}
 		}
 		else {			//se amostra ja tiver pacientes
-			if (npar==novopac.parametros.length) { 	//se o novo paciente tiver o msm numero de mediçoes que os que ja la estao
-				last.next=novopac;					//o next do ultimo é o que vamos inserir
+			if (npar==novopac.parametros.length) { 	//se o novo paciente tiver o msm numero de mediÃ§oes que os que ja la estao
+				last.next=novopac;					//o next do ultimo Ã© o que vamos inserir
 				last=novopac;						//o ultimo passa a ser o que vamos inserir
 				length++;							//aumento comprimento da amostra em 1 paciente
 				for (int i=0; i < this.npar; i++) {	//atualizr dominio
@@ -120,7 +122,7 @@ public class Amostrad implements Serializable {
 				}
 			}
 			else 
-				throw new Exception("Erro: Tamanho do vetor não coincide com o número de parâmtros da amostra na funçao add");
+				throw new Exception("Erro: Tamanho do vetor nÃ£o coincide com o nÃºmero de parÃ¢mtros da amostra na funÃ§ao add");
 		} 
 	}
 
@@ -128,7 +130,7 @@ public class Amostrad implements Serializable {
 		return length;
 	}
 
-	public int[] element(int pos) throws Exception{	//retorna o vetor de uma certa mediçao/parametro
+	public int[] element(int pos) throws Exception{	//retorna o vetor de uma certa mediÃ§ao/parametro
 		if (pos>=0 && pos<length) {	
 			paciente x=first;
 			int i=0;
@@ -139,11 +141,11 @@ public class Amostrad implements Serializable {
 			return x.parametros;
 		}
 		else { 
-			throw new Exception("Erro: Posiçao out of bounds na funçao element");}
+			throw new Exception("Erro: PosiÃ§ao out of bounds na funÃ§ao element");}
 	}
 
 
-	public int domain(int vpos[]) { //dominio de um conjunto de parametros que esto nas posiçoes do vpos
+	public int domain(int vpos[]) { //dominio de um conjunto de parametros que esto nas posiÃ§oes do vpos
 		int res=1;
 		for (int pos : vpos) {
 			res=res*(dominio.get(pos));
