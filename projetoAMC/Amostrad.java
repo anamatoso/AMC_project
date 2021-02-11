@@ -1,4 +1,4 @@
-//Amostra package
+//Amostra
 
 package projetoAMC;
 
